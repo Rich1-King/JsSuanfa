@@ -10,8 +10,14 @@ exports.map = function(){
             this.mapNode[i] = mapList[i];
             this.edage[i] = new Array();
             this.unVisited[i] = -1;
+            for(var j=0; j<mapList.length; j++){
+                this.edage[i][j] = 0;
+            }
         }
         console.log('init is over!!!');
+        console.log('mapNode:'+this.mapNode);
+        console.log('edage:'+this.edage);
+        console.log('unVisited:'+this.unVisited);
     }
 
     this.setEdage = function(start, end){
@@ -27,33 +33,42 @@ exports.map = function(){
         console.log('edage:' + this.edage.length);
         console.log('edage is :'+this.edage);
         for(var i=0; i<this.edage.length; i++){
-            if(this.unVisited[i] != -1){
-                continue;
-            }
-            console.log(i + '=>' + this.mapNode[i]);
-            search(i);
-            if(i = this.edage.length -1){
-                this.unVisited[i] = 1;
-            }
+            this.depthSearch(i);
         }
     }
-    function search(i){
-        console.log('search');
-        console.log(this.unVisited);
-        console.log(this.unVisited[i]);
+    this.depthSearch = function(i){
         if(this.unVisited[i] != -1){
             return;
         }
-        console.log('mapNode:' + this.mapNode.length);
+        console.log(i+'=>'+this.mapNode[i]);
+        this.unVisited[i]=1;
+        for(var j=0; j<this.mapNode.length; j++){
+            if(this.edage[i][j] == 1){
+                this.depthSearch(j);
+            }
+        }
+    }
+
+    this.guangFound = function(){
+        console.log('edage:' + this.edage.length);
+        console.log('edage is :'+this.edage);
+        for(var i=0; i<this.edage.length; i++){
+            this.guangSearch(i);
+        }
+    }
+
+    this.guangSearch = function(i){
+        if(this.unVisited[i] !=  -1){
+            return;
+        }
+
+        console.log(i+'=>'+this.mapNode[i]);
+        this.unVisited[i]=1;
         for(var j=0; j<this.mapNode.length; j++){
             if(this.edage[i][j] == 1){
                 console.log(j+'=>'+this.mapNode[j]);
-                search(j);
-                if(j == this.mapNode.length - 1){
-                    this.unVisited[j] = 1;
-                }
+                this.unVisited[j]=1;
             }
-
         }
     }
 

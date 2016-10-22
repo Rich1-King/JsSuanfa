@@ -51,3 +51,19 @@ mapCtrl.setEdage(3,2);
 
 mapCtrl.depthFound();
 
+var mapValue1 = [10,5,20,30];
+var mapCtrl1 = new map.map();
+mapCtrl1.initMap(mapValue);
+mapCtrl1.setEdage(0,1);
+mapCtrl1.setEdage(0,2);
+mapCtrl1.setEdage(0,3);
+mapCtrl1.setEdage(1,0);
+mapCtrl1.setEdage(1,3);
+mapCtrl1.setEdage(2,0);
+mapCtrl1.setEdage(2,3);
+mapCtrl1.setEdage(3,0);
+mapCtrl1.setEdage(3,1);
+mapCtrl1.setEdage(3,2);
+
+mapCtrl1.guangFound();
+
